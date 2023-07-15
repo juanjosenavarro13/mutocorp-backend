@@ -14,7 +14,7 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()
-    .setTitle('JNP API')
+    .setTitle('MUTOCORP API')
     .setVersion('1.0')
     .setBasePath('api')
     .build();

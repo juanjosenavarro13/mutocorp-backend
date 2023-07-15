@@ -15,7 +15,7 @@ export class UsersService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async findAll(): Promise<UserSave[]> {
+  async findAll() {
     return this.userModel.find().exec();
   }
 
@@ -73,23 +73,19 @@ export class UsersService {
     }
 
     return await this.userModel
-      .updateOne(
-        { email: user.email },
-        { ...dateUpdate, updated_at: new Date() },
-      )
+      .updateOne({ email: user.email }, dateUpdate)
       .exec();
   }
 
   private userResponse(user: UserSave): userResponse {
-    const { name, email, created_at, updated_at, refreshToken, role, _id } =
-      user;
+    const { name, email, createdAt, updatedAt, refreshToken, role, _id } = user;
 
     return {
       id: _id,
       name,
       email,
-      created_at,
-      updated_at,
+      createdAt,
+      updatedAt,
       refreshToken,
       role,
     };

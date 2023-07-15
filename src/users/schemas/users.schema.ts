@@ -4,7 +4,7 @@ import { Role } from '../types';
 
 export type UserDocument = HydratedDocument<User>;
 
-@Schema()
+@Schema({ timestamps: true })
 export class User {
   @Prop({ required: true, trim: true, unique: true })
   name: string;
@@ -20,12 +20,6 @@ export class User {
 
   @Prop({ default: Role.USER })
   role: string;
-
-  @Prop({ default: Date.now })
-  created_at: Date;
-
-  @Prop({ default: Date.now })
-  updated_at: Date;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

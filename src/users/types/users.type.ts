@@ -2,11 +2,11 @@ export type UserSave = {
   _id: any;
   name: string;
   email: string;
-  created_at: Date;
-  updated_at: Date;
   refreshToken: string;
   role: string;
   password: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 };
 
 export type DataUpdate = {
@@ -27,8 +27,8 @@ export type userResponse = {
   id: string;
   name: string;
   email: string;
-  created_at: Date;
-  updated_at: Date;
+  createdAt: Date;
+  updatedAt: Date;
   refreshToken: string;
   role: string;
 };

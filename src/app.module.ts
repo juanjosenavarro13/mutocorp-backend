@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { AtGuard } from './shared/guards';
 import { SharedModule } from './shared/shared.module';
 import { UsersModule } from './users/users.module';
+import { RaidersModule } from './raiders/raiders.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { UsersModule } from './users/users.module';
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGOOSE_URI),
     SharedModule,
+    RaidersModule,
   ],
   controllers: [],
   providers: [

@@ -140,10 +140,24 @@ window.onload = function() {
             "users"
           ]
         }
+      },
+      "/api/raiders": {
+        "get": {
+          "operationId": "RaidersController_getRaiders",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "get all raiders"
+            }
+          },
+          "tags": [
+            "raiders"
+          ]
+        }
       }
     },
     "info": {
-      "title": "JNP API",
+      "title": "MUTOCORP API",
       "description": "",
       "version": "1.0",
       "contact": {}
