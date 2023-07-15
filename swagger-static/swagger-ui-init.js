@@ -153,6 +153,34 @@ window.onload = function() {
           "tags": [
             "raiders"
           ]
+        },
+        "post": {
+          "operationId": "RaidersController_createRaider",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRaiderDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "raider created"
+            },
+            "400": {
+              "description": "user not found or raider exist"
+            },
+            "401": {
+              "description": "UNAUTHORIZED"
+            }
+          },
+          "tags": [
+            "raiders"
+          ]
         }
       }
     },
@@ -225,6 +253,28 @@ window.onload = function() {
           "required": [
             "email",
             "name"
+          ]
+        },
+        "CreateRaiderDto": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "pepito"
+            },
+            "hikoins": {
+              "type": "number",
+              "example": "123456",
+              "default": 0
+            },
+            "user": {
+              "type": "string",
+              "example": "64b2b0bdaee38c32378b7ca5"
+            }
+          },
+          "required": [
+            "name",
+            "user"
           ]
         }
       }

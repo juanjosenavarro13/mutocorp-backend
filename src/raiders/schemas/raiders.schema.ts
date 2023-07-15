@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import mongoose, { HydratedDocument } from 'mongoose';
+import { User } from 'src/users';
 
 export type RaiderDocument = HydratedDocument<Raider>;
 
@@ -8,8 +9,16 @@ export class Raider {
   @Prop({ required: true, trim: true, unique: true })
   name: string;
 
-  @Prop({ required: true, default: 0 })
+  @Prop({ required: false, default: 0 })
   hikoins: number;
+
+  @Prop({
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: true,
+    unique: true,
+  })
+  user: User;
 }
 
 export const RaiderSchema = SchemaFactory.createForClass(Raider);

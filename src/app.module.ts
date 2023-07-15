@@ -18,10 +18,10 @@ import { RaidersModule } from './raiders/raiders.module';
     }),
     AuthModule,
     UsersModule,
+    RaidersModule,
+    SharedModule,
     ConfigModule.forRoot(),
     MongooseModule.forRoot(process.env.MONGOOSE_URI),
-    SharedModule,
-    RaidersModule,
   ],
   controllers: [],
   providers: [
