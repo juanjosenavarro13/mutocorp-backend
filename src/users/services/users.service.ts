@@ -41,7 +41,10 @@ export class UsersService {
 
   async profile(token: string) {
     if (!token) {
-      throw new HttpException('Access Denied', HttpStatus.UNAUTHORIZED);
+      throw new HttpException(
+        'Access Denied no token',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
     const user = await this.jwtService.verifyAsync(token, {
@@ -51,7 +54,10 @@ export class UsersService {
     const findUser = await this.findByEmail(user.email);
 
     if (!findUser) {
-      throw new HttpException('Access Denied', HttpStatus.UNAUTHORIZED);
+      throw new HttpException(
+        'Access Denied no find user',
+        HttpStatus.UNAUTHORIZED,
+      );
     }
 
     return this.userResponse(findUser);
