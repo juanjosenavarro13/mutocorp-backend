@@ -101,8 +101,33 @@ window.onload = function() {
       },
       "/api/users/profile": {
         "get": {
-          "operationId": "UsersController_profile",
+          "operationId": "UsersController_getProfile",
           "parameters": [],
+          "responses": {
+            "200": {
+              "description": "refresh token"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "tags": [
+            "users"
+          ]
+        },
+        "post": {
+          "operationId": "UsersController_updateProfile",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateProfileDTO"
+                }
+              }
+            }
+          },
           "responses": {
             "200": {
               "description": "refresh token"
@@ -169,6 +194,23 @@ window.onload = function() {
           "required": [
             "email",
             "password"
+          ]
+        },
+        "UpdateProfileDTO": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string",
+              "example": "email@email.es"
+            },
+            "name": {
+              "type": "string",
+              "example": "pepito"
+            }
+          },
+          "required": [
+            "email",
+            "name"
           ]
         }
       }

@@ -6,6 +6,7 @@ import { Model } from 'mongoose';
 import { jwtConstants } from 'src/auth/constants';
 import { User } from '../schemas';
 import { DataUpdate, UserRegister, UserSave, userResponse } from '../types';
+import { UpdateProfileDTO } from '../dto';
 
 @Injectable()
 export class UsersService {
@@ -47,7 +48,36 @@ export class UsersService {
       secret: jwtConstants.secret,
     });
 
-    return this.userResponse(await this.findByEmail(user.email));
+    const findUser = await this.findByEmail(user.email);
+
+    if (!findUser) {
+      throw new HttpException('Access Denied', HttpStatus.UNAUTHORIZED);
+    }
+
+    return this.userResponse(findUser);
+  }
+
+  async updateProfile(dateUpdate: UpdateProfileDTO, token: string) {
+    if (!token) {
+      throw new HttpException('Access Denied', HttpStatus.UNAUTHORIZED);
+    }
+
+    const user = await this.jwtService.verifyAsync(token, {
+      secret: jwtConstants.secret,
+    });
+
+    const userSave = await this.findByEmail(user.email);
+
+    if (!userSave) {
+      throw new HttpException('Access Denied', HttpStatus.UNAUTHORIZED);
+    }
+
+    return await this.userModel
+      .updateOne(
+        { email: user.email },
+        { ...dateUpdate, updated_at: new Date() },
+      )
+      .exec();
   }
 
   private userResponse(user: UserSave): userResponse {
