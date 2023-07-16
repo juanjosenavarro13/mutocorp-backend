@@ -2,15 +2,15 @@ import {
   Body,
   Controller,
   Get,
+  Headers,
   Post,
   UseGuards,
-  Headers,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
-import { GetCurrentUser } from 'src/shared/decorators';
-import { RtGuard } from 'src/shared/guards';
-import { UsersService } from './../services/users.service';
+import { GetCurrentUser } from '../../shared/decorators';
+import { RtGuard } from '../../shared/guards';
 import { UpdateProfileDTO } from '../dto';
+import { UsersService } from './../services/users.service';
 
 @ApiTags('users')
 @Controller('users')

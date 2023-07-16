@@ -182,6 +182,67 @@ window.onload = function() {
             "raiders"
           ]
         }
+      },
+      "/api/admin/users": {
+        "get": {
+          "operationId": "AdminController_getAllUsers",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "get all users"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/raiders": {
+        "get": {
+          "operationId": "AdminController_getAllRaiders",
+          "parameters": [],
+          "responses": {
+            "200": {
+              "description": "get all raiders"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
+      },
+      "/api/admin/raiders/create": {
+        "post": {
+          "operationId": "AdminController_createRaider",
+          "parameters": [],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRaiderDto"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "create raider"
+            },
+            "401": {
+              "description": "Unauthorized"
+            }
+          },
+          "tags": [
+            "Admin"
+          ]
+        }
       }
     },
     "info": {
@@ -263,7 +324,7 @@ window.onload = function() {
               "example": "pepito"
             },
             "hikoins": {
-              "type": "number",
+              "type": "string",
               "example": "123456",
               "default": 0
             },

@@ -10,5 +10,6 @@ import { RaidersService } from './services/raiders.service';
   ],
   controllers: [RaidersController],
   providers: [RaidersService],
+  exports: [RaidersService],
 })
 export class RaidersModule {}

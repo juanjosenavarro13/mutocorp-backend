@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateRaiderDto {
   @ApiProperty({ example: 'pepito' })
@@ -8,9 +8,9 @@ export class CreateRaiderDto {
   readonly name: string;
 
   @ApiProperty({ example: '123456', required: false, default: 0 })
-  @IsNumber()
+  @IsString()
   @IsOptional()
-  readonly hikoins: number;
+  readonly hikoins: string;
 
   @ApiProperty({ example: '64b2b0bdaee38c32378b7ca5' })
   @IsNotEmpty()

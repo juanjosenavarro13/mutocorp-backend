@@ -32,7 +32,7 @@ export class RaidersService {
         (await this.getRaiderByIdUser(raider.user))
       ) {
         throw new HttpException(
-          'Raider already exists',
+          'Raider already exists or user already has a raider',
           HttpStatus.BAD_REQUEST,
         );
       }
@@ -45,6 +45,15 @@ export class RaidersService {
       if (error.response === 'Raider already exists') {
         throw new HttpException(
           'Raider already exists',
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+
+      if (
+        error.response === 'Raider already exists or user already has a raider'
+      ) {
+        throw new HttpException(
+          'Raider already exists or user already has a raider',
           HttpStatus.BAD_REQUEST,
         );
       }
